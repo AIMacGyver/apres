@@ -1,0 +1,20 @@
+top -b -d2 -s1 | sed -e '1,/USERNAME/d' | sed -e '1,/^$/d'
+top -b -n 1 -u abc | awk 'NR>7 { sum += $9; } END { print sum; }'
+top -b -d 5 -n 2 | awk '$1 == "PID" {block_num++; next} block_num == 2 {sum += $9;} END {print sum}'
+top -n 1
+top -bn1 | grep zombie
+top -bn1 | sed -n '/Cpu/p'
+top -bn1 | grep zombie | awk '{print $4" "$6" "$8" "$10}'
+top -b -n1 -c
+top -b -n1 | grep processname
+top -n1 | sed 's/\(.*\)$/\1__CUSTOM_LINE_MARKER/g'
+top -bn1 | sed -n '/Cpu/p' | awk '{print $2}' | sed 's/..,//'
+top -b -n1 | head -8 | tail -1 | awk '{ printf "User: %s\nPID: %s\nCPU Usage: %s\nMEM Usage: %s\n", $2,$1,$9,$10 }'
+top -b -n1 -c  | awk '/PID *USER/{print;getline;print}'
+top -b -n1 -c  | grep -A 2 '^$'
+top -u abc -d 30 -b -n 10
+top -p $(pgrep -d',' http)
+top -p "$(pgrep -d ',' java)"
+top -p `pgrep process-name | tr "\\n" "," | sed 's/,$//'`
+top -c -p $(pgrep -d',' -f string_to_match_in_cmd_line)
+top -c
