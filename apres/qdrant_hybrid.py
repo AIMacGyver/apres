@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from qdrant_client import QdrantClient, AsyncQdrantClient
-import tribore.utils as utils
+import apres.utils as utils
 
 client = QdrantClient(location=":memory:")
 aclient = AsyncQdrantClient(location=":memory:")
